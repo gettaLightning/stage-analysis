@@ -1,0 +1,27 @@
+<h2>{{ stock.symbol | uppercase }} Details</h2>
+<div>
+    <label>symbol:
+      <input [(ngModel)]="stock.symbol" placeholder="name"> 
+      <button (click)="getWeeklyPrices(stock.symbol)">Get Weekly Prices</button>
+    </label>
+</div>
+<div><span>earnings: </span>
+<table>
+  <tr>
+    <th>Fiscal Period</th>
+    <th>Actual</th>
+    <th>Change</th>
+    <!--<th>Consensus</th>-->
+    <th>Estimated</th>
+    <th>Report Date</th>    
+  </tr>
+  <tr *ngFor="let earning of stock.earnings">
+    <td>{{earning.fiscalPeriod}}</td>
+    <td><b>{{earning.actualEPS}}</b></td>
+    <td>{{earning.actualEPSChange | percent: '2.2-2'}}</td>
+    <!--<td>{{earning.consensusEPS}}</td>-->
+    <td>{{earning.estimatedEPS}}</td>
+    <td>{{earning.EPSReportDate}}</td>    
+  </tr>
+</table>
+</div>
